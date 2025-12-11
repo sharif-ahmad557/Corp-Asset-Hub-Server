@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 // --- MIDDLEWARES ---
 app.use(
   cors({
-    origin: ["http://localhost:5173"], // Frontend URL
+    origin: ["http://localhost:5174"], // Frontend URL
     credentials: true,
   })
 );
@@ -471,9 +471,6 @@ async function run() {
       res.send({ paymentResult, updateResult });
     });
 
-    // ==============================================================
-    // 📊 ADMIN STATS (For HR Dashboard Charts)
-    // ==============================================================
     app.get("/admin-stats", verifyToken, verifyHR, async (req, res) => {
       const email = req.decoded.email; // HR Email
 
