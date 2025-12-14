@@ -442,6 +442,16 @@ async function run() {
       res.send({ paymentResult, updateResult });
     });
 
+    // Get Payment History (HR Only)
+    app.get("/payments/:email", verifyToken, verifyHR, async (req, res) => {
+      const query = { hrEmail: req.params.email };
+      const result = await paymentsCollection
+        .find(query)
+        .sort({ date: -1 })
+        .toArray();
+      res.send(result);
+    });
+
     console.log("📌 AssetVerse Database & ALL Routes Ready!");
   } finally {
     // await client.close();
