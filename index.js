@@ -128,7 +128,6 @@ async function run() {
       res.send(result);
     });
 
-    // Get All Assets (Pagination, Search, Filter)
     app.get("/assets", verifyToken, async (req, res) => {
       const { search, filter, email, page = 0, limit = 10 } = req.query;
       let query = {};
@@ -193,7 +192,7 @@ async function run() {
             productType: item.productType,
             productQuantity: parseInt(item.productQuantity),
             productImage: item.productImage,
-            description: item.description, // ✅ এই লাইনটি এখন যুক্ত করা হলো
+            description: item.description,
           },
         };
         const result = await assetsCollection.updateOne(filter, updatedDoc);
@@ -307,7 +306,7 @@ async function run() {
     });
 
     app.patch("/return-asset/:id", verifyToken, async (req, res) => {
-      const id = req.params.id; // Request ID
+      const id = req.params.id;
 
       const filter = { _id: new ObjectId(id) };
       const updateDoc = {
