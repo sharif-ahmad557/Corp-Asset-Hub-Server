@@ -180,6 +180,7 @@ async function run() {
       }
     });
 
+    // Update Asset (HR Only)
     app.patch("/assets/:id", verifyToken, verifyHR, async (req, res) => {
       try {
         const id = req.params.id;
@@ -192,15 +193,16 @@ async function run() {
             productType: item.productType,
             productQuantity: parseInt(item.productQuantity),
             productImage: item.productImage,
+            description: item.description, // ✅ এই লাইনটি এখন যুক্ত করা হলো
           },
         };
         const result = await assetsCollection.updateOne(filter, updatedDoc);
         res.send(result);
       } catch (error) {
+        console.error("Update Error:", error);
         res.status(500).send({ message: "Error updating asset" });
       }
     });
-
     app.post("/request-asset", verifyToken, async (req, res) => {
       const requestData = req.body;
       requestData.requestDate = new Date();
