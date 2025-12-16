@@ -12,12 +12,7 @@ const port = process.env.PORT || 5000;
 // --- MIDDLEWARES ---
 app.use(
   cors({
-    origin: [
-      "http://localhost:5174",
-      "http://localhost:5175",
-      "http://localhost:5173",
-      "https://corp-asset-hub-client-p1ze.vercel.app",
-    ],
+    origin: true,
     credentials: true,
   })
 );
@@ -458,7 +453,7 @@ async function run() {
       res.send(result);
     });
 
-    console.log("📌 AssetVerse Database & ALL Routes Ready!");
+    // console.log("📌 AssetVerse Database & ALL Routes Ready!");
   } finally {
     // await client.close();
   }
