@@ -16,7 +16,7 @@ app.use(
       "http://localhost:5174",
       "http://localhost:5175",
       "http://localhost:5173",
-      "https://corp-asset-hub-client-1nac.vercel.app",
+      "https://corp-asset-hub-client-p1ze.vercel.app",
     ],
     credentials: true,
   })
